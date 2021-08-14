@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+
+
+    <title>TODOAPP</title>
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-12  text-center">
+
+                <h2>TODOAPP</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4 text"></div>
+
+            <div class="col-6 mt-5">
+                
+                <ul id="lista">
+
+
+
+                </ul>
+
+                <input type="text" name="itemNombre" id="ingreso" placeholder="Item"/> <br>
+                <button  id="btnAgregar" type="button" class=" mt-2 btn btn-primary">Agregar</button>
+                
+           
+
+            </div>
+        </div>
+        <script>
+
+            var items = ['Cebolla', 'Batata'];
+            var lista = document.getElementById("lista");
+            var itemNombre = document.getElementById("itemNombre");
+            var btnAgregar = document.getElementById("btnAgregar");
+
+
+            btnAgregar.addEventListener('click', () => {
+                agregarElemento();
+            });
+
+
+            const agregarElemento = () => {
+
+                let item = document.getElementById('ingreso').value;
+                items.push(item);
+                console.log(items);
+
+                let elementoLi = document.createElement('li');
+
+                elementoLi.innerText = item;
+                lista.append(elementoLi);
+                let btnEditar = document.createElement('Button');
+                btnEditar.innerText = "Editar";
+                btnEditar.classList.add("btn","btn-warning");
+
+                let btnEliminar = document.createElement('Button');
+                btnEliminar.innerText = "Eliminar";
+                btnEliminar.classList.add("btn","btn-danger");
+
+                elementoLi.append(btnEditar);
+                elementoLi.append(btnEliminar);
+
+                ingreso.value = "";
+
+                imprimirLista();
+            }
+
+
+            const imprimirLista = () => {
+                lista.innerHTML = "";
+                items.forEach((item, index) => {
+
+                    let elementoLi = document.createElement('li');
+                    elementoLi.innerText = item;
+                    lista.append(elementoLi);
+                    let btnEditar = document.createElement('Button');
+                    btnEditar.innerText = "Editar";
+                    
+                    btnEditar.classList.add("m-2","btn","btn-warning");
+                    btnEditar.addEventListener('click', () => editarElemento(index));
+                    let btnEliminar = document.createElement('Button');
+                    btnEliminar.innerText = "Eliminar";
+                    btnEliminar.classList.add("btn","btn-danger");
+                    btnEliminar.addEventListener('click', () => eliminarElemento(index));
+                    elementoLi.append(btnEditar);
+                    elementoLi.append(btnEliminar);
+
+                });
+
+
+            }
+
+
+            const eliminarElemento = (index) => {
+
+                items.splice(index, 1);
+
+                imprimirLista();
+
+
+            }
+
+            const editarElemento = (index) => {
+                let nombre = prompt('Ingrese el nuevo nombre del elemento', 'ej: Batata');
+                items[index] = nombre;
+                imprimirLista();
+
+            }
+
+
+            imprimirLista();
+
+
+
+        </script>
+
+    </div>
+</body>
+
+</html>
