@@ -11,7 +11,7 @@
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
         crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="/Clase 3/TODOAPP/styles.css">
+    <link rel="stylesheet" href="../TODOAPP/styles.css">
 
 
     <title>TODOAPP</title>
@@ -19,22 +19,22 @@
 
 </head>
 
-<body>
+<body class="m-0  vh-100 row justify-content-center align-items-center">
 
-    <div class="container">
+    <div class="container ">
 
         <div class="row">
 
-            <div class="col-11 text-center">
+            <div class="col-12 text-center">
 
-                <h2>TODOAPP</h2>
+                <h2>TODO APP</h2>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-2 text"></div>
+            <div class="col-3 "></div>
 
-            <div class="col-8 mt-3">
+            <div class="col-7 mt-3">
 
 
                 <ul id="lista" class="mb-2">
@@ -44,12 +44,22 @@
 
                 </ul>
 
-                <input type="text" name="itemNombre" id="ingreso" placeholder="Item" class="form-control" /> <br>
-                <button id="btnAgregar" type="button" class=" btn btn-primary">Agregar</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-3 "></div>
+            <div class="col-7 mt-3 mx-4 w-50">
+               
+                <input type="text" name="itemNombre" id="ingreso" placeholder="Item" class="form-control  mx-2" /> <br>
+               
+               
+                <button id="btnAgregar" type="button" class=" btn btn-primary mx-2">Agregar</button>
 
 
 
             </div>
+            
         </div>
         <script>
 
@@ -124,14 +134,20 @@
 
             const editarElemento = (index) => {
                 let nombre = prompt('Ingrese el nuevo ítem', 'ej. Batata');
+                
+                
                 if (nombre == "") {
                     return;
-                } else {
+                }else if(nombre== null){
+
+                    return;
+
+                }                 
+                else {
                     items[index] = nombre;
-                    imprimirLista();
+                    
                 }
-
-
+                imprimirLista();
             }
 
 

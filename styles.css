@@ -6,14 +6,19 @@ ul li{
 
 #ingreso{
 
-margin-left: 32px ;
-width: 528px ;
+
+width: 84.8% ;
 
 
 }
 
-#btnAgregar{
 
-    margin-left: 32px;
+@media(max-width: 1282px){
+
+span{
+
+width: 30% !important;
 
 }
+}
+
