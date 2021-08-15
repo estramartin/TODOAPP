@@ -11,6 +11,8 @@
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
         crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="/Clase 3/TODOAPP/styles.css">
+
 
     <title>TODOAPP</title>
 
@@ -23,27 +25,29 @@
 
         <div class="row">
 
-            <div class="col-12  text-center">
+            <div class="col-11 text-center">
 
                 <h2>TODOAPP</h2>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-4 text"></div>
+            <div class="col-2 text"></div>
 
-            <div class="col-6 mt-5">
-                
-                <ul id="lista">
+            <div class="col-8 mt-3">
+
+
+                <ul id="lista" class="mb-2">
+
 
 
 
                 </ul>
 
-                <input type="text" name="itemNombre" id="ingreso" placeholder="Item"/> <br>
-                <button  id="btnAgregar" type="button" class=" mt-2 btn btn-primary">Agregar</button>
-                
-           
+                <input type="text" name="itemNombre" id="ingreso" placeholder="Item" class="form-control" /> <br>
+                <button id="btnAgregar" type="button" class=" btn btn-primary">Agregar</button>
+
+
 
             </div>
         </div>
@@ -66,21 +70,6 @@
                 items.push(item);
                 console.log(items);
 
-                let elementoLi = document.createElement('li');
-
-                elementoLi.innerText = item;
-                lista.append(elementoLi);
-                let btnEditar = document.createElement('Button');
-                btnEditar.innerText = "Editar";
-                btnEditar.classList.add("btn","btn-warning");
-
-                let btnEliminar = document.createElement('Button');
-                btnEliminar.innerText = "Eliminar";
-                btnEliminar.classList.add("btn","btn-danger");
-
-                elementoLi.append(btnEditar);
-                elementoLi.append(btnEliminar);
-
                 ingreso.value = "";
 
                 imprimirLista();
@@ -92,19 +81,31 @@
                 items.forEach((item, index) => {
 
                     let elementoLi = document.createElement('li');
-                    elementoLi.innerText = item;
+                    let spanli = document.createElement("span");
+
+
+                    spanli.innerText = item;
+                    spanli.classList.add("d-inline-block","w-50", "pt-3","fw-bold", "mx-5" );
+
+                    elementoLi.append(spanli);
+                    elementoLi.classList.add("d-inline-block", "w-75", "border", "border-1" ,"m-0" );
+
                     lista.append(elementoLi);
+
                     let btnEditar = document.createElement('Button');
                     btnEditar.innerText = "Editar";
-                    
-                    btnEditar.classList.add("m-2","btn","btn-warning");
+                    btnEditar.classList.add("m-2", "btn", "btn-warning");
                     btnEditar.addEventListener('click', () => editarElemento(index));
+
                     let btnEliminar = document.createElement('Button');
-                    btnEliminar.innerText = "Eliminar";
-                    btnEliminar.classList.add("btn","btn-danger");
+                    btnEliminar.innerText = "Borrar";
+                    btnEliminar.classList.add("btn", "btn-danger");
                     btnEliminar.addEventListener('click', () => eliminarElemento(index));
+
                     elementoLi.append(btnEditar);
                     elementoLi.append(btnEliminar);
+
+
 
                 });
 
@@ -122,14 +123,21 @@
             }
 
             const editarElemento = (index) => {
-                let nombre = prompt('Ingrese el nuevo nombre del elemento', 'ej: Batata');
-                items[index] = nombre;
-                imprimirLista();
+                let nombre = prompt('Ingrese el nuevo ítem', 'ej. Batata');
+                if (nombre == "") {
+                    return;
+                } else {
+                    items[index] = nombre;
+                    imprimirLista();
+                }
+
 
             }
 
 
+
             imprimirLista();
+
 
 
 
